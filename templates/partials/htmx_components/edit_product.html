@@ -1,0 +1,8 @@
+<form
+  method="post"
+  hx-post="{% url 'edit_product' product.id %}"
+  hx-target="#list-products"
+>
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

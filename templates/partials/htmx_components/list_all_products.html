@@ -1,0 +1,36 @@
+{% if products %}
+<ul class="list-group" style="width: 50%; margin-left: 16%; float: center">
+  {% for product in products %}
+  <li class="list-group-item">
+    {{product.name}}
+
+    <p
+      style="float: right; cursor: pointer"
+      class="badge bg-danger"
+      hx-delete="{% url 'delete_product' product.id %}"
+      hx-trigger="click"
+      hx-target="#list-products"
+    >
+      Deletar
+    </p>
+
+    <p
+      style="float: right; cursor: pointer; margin-right: 10px"
+      class="badge bg-warning"
+      hx-get="{% url 'get_product_form' product.id %}"
+      hx-trigger="click"
+      hx-target="#modal-content"
+      hx-swap="innerHTML"
+      data-bs-toggle="modal"
+      data-bs-target="#editProductModal"
+    >
+      Editar
+    </p>
+  </li>
+
+  {% endfor %}
+</ul>
+
+{% else %}
+<h4>Nenhum produto cadastrado</h4>
+{% endif %}
